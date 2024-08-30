@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        :root{
+            --background-color-light: white;
+            --color-light: black;
+
+            --background-color-dark: black;
+            --color-dark: white;
+        }
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100dvh;
+            transition: all .4s ease;
+            background-color: var(--background-color-dark);
+            color: var(--color-dark);
+        }
+
+        body:has(#night:checked){
+            background-color: var(--background-color-dark);
+            color: var(--color-dark);
+        }
+
+        body:has(#light:checked){
+            background-color: var(--background-color-light);
+            color: var(--color-light);
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <div>
+            <label for="night">Night Mode</label>
+            <input type="radio" name="mode" id="night" checked>
+        </div>
+        <div>
+            <label for="light">Light Mode</label>
+            <input type="radio" name="mode" id="light" >
+        </div>
+
+        <h1 id="text">Night Mode Test</h1>
+    </main>
+</body>
+</html>

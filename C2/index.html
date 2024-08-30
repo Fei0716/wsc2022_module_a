@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100dvh;
+        }
+        #img-wrapper{
+            position: relative;
+            width: 400px;
+            height: fit-content;
+        }
+        img{
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+        #spotlight{
+            position: absolute;
+            left: -100px;
+            height: 50px;
+            width: 50px;
+            background-color: rgba(255, 255, 255, 0.7);
+            filter: blur(4px);
+            border-radius: 100%;
+            pointer-events: none; /* Prevent spotlight from capturing mouse events */
+        }
+    </style>
+</head>
+<body>
+<div id="img-wrapper">
+    <div id="spotlight"></div>
+    <img src="./background.jpg" id="img-background">
+</div>
+
+<script>
+    const imgWrapper = document.querySelector("#img-wrapper");
+    const spotlight = document.querySelector("#spotlight");
+    let isMoving = false;
+    let spotlightX = 0;
+    let spotlightY = 0;
+    let spotlightWidth = 50;
+    imgWrapper.addEventListener("mouseenter", (e) => {
+        if (isMoving) return;
+        moveSpotlight(e);
+        isMoving = true;
+        imgWrapper.addEventListener("mousemove", handleMouseMove);
+
+        imgWrapper.addEventListener("mouseleave", (e) => {
+            isMoving = false;
+            imgWrapper.removeEventListener("mousemove", handleMouseMove);
+        });
+    });
+
+    document.addEventListener("wheel", (e)=>{
+        if(e.deltaY < 0 ){
+            //increase size of spotlight
+            spotlightWidth++;
+        }else if(e.deltaY > 0 && spotlightWidth > 10){
+            spotlightWidth--;
+        }
+
+        spotlight.style.cssText = `
+            width: ${spotlightWidth}px;
+            height: ${spotlightWidth}px;
+        `;
+    })
+
+    function handleMouseMove(e) {
+        spotlightX = e.offsetX;
+        spotlightY = e.offsetY;
+        requestAnimationFrame(updateSpotlight);//to give a smoother non flickering effect
+    }
+
+    function updateSpotlight() {
+        let initialWidth = parseFloat(getComputedStyle(spotlight).width);
+        let initialHeight = parseFloat(getComputedStyle(spotlight).height);
+
+        spotlight.style.left = `${spotlightX - (initialWidth / 2)}px`;
+        spotlight.style.top = `${spotlightY - (initialHeight / 2)}px`;
+    }
+
+    function moveSpotlight(e) {
+        spotlightX = e.offsetX;
+        spotlightY = e.offsetY;
+        updateSpotlight();
+    }
+</script>
+</body>
+</html>

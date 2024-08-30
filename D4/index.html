@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap:  1rem;
+        }
+
+        article{
+            padding: 1rem;
+            background-color: black;
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+    </style>
+</head>
+<body>
+
+    <h1>Data Display</h1>
+
+    <section id="section-data">
+
+    </section>
+
+<script>
+    const dataSection = document.querySelector('#section-data');
+    let currentPage = 0;
+    let pageSize = 10;
+
+    let dataArr = [];
+    let observer = new IntersectionObserver((entries)=>{
+        if(entries[0].intersectionRatio > 0){
+            //load up more data
+            currentPage++;
+           getData();
+        }
+    });
+    getData();
+    async function getData(){
+        const res = await fetch(`./server.php?currentPage=${currentPage}`);
+        const data = await res.json();
+        dataArr = data;
+        loadData();
+    }
+    function loadData(){
+        let article;
+        for(let d of dataArr){
+            article = document.createElement("article");
+            article.innerHTML = `
+                <h2>id:${d.id}, ${d.first_name} ${d.last_name}</h2>
+                <small>${d.email}</small>
+                <div>${d.country}, ${d.city}, ${d.phone}</div>
+            `
+            dataSection.append(article);
+        };
+
+        //observe the last article
+        observer.observe(document.querySelectorAll("article")[document.querySelectorAll("article").length - 1]);
+    }
+
+</script>
+</body>
+</html>

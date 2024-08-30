@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="ccc47452-a885-4581-aefa-3e6d626dd421" name="Lyon VM" url="http://ws01.worldskills.org">
+        <fileTransfer rootFolder="/var/www/html" accessType="SFTP" host="ssh.worldskills.org" port="20001" sshConfigId="40c16267-b0e2-402f-ab05-4e1f3c879fd0" sshConfig="ws01@ssh.worldskills.org:20001 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

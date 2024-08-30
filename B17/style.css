@@ -1,0 +1,48 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+:root{
+    --percent: 0%;
+}
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100dvh;
+}
+#chart{
+    position: relative;
+    height: 500px;
+    width: 500px;
+    border-radius: 100%;
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3rem;
+    font-weight: bold;
+}
+#chart::before, #chart::after{
+    position: absolute;
+    content: "";
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 100%;
+}
+#chart::after{
+    height: 450px;
+    width: 450px;
+    background-color: #ffffff;
+    z-index: -1;
+}
+#chart::before{
+    z-index: -1;
+    height: 500px;
+    width: 500px;
+    background-image: conic-gradient(blue 0% var(--percent), grey var(--percent) 100%);
+}
+

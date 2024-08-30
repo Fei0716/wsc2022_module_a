@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100dvh;
+            perspective: 1000px;
+        }
+        #box{
+            transform-style: preserve-3d;
+            position: relative;
+            width: 500px;
+            height: 350px;
+            animation: rotate 4s linear infinite;
+
+
+            img{
+                position: absolute;
+                width: 100%;
+                height: auto;
+                object-fit: cover;
+                border: 5px solid black;
+            }
+            img:nth-of-type(1){
+                transform: translateZ(-250px);
+            }
+            img:nth-of-type(2){
+                transform: translateZ(250px);
+            }
+            img:nth-of-type(3){
+                transform: rotateY(-90deg) translateZ(250px);
+            }
+            img:nth-of-type(4){
+                transform: rotateY(90deg) translateZ(250px);
+            }
+        }
+
+        @keyframes rotate {
+            from{
+                transform: rotateY(0);
+            }
+            to{
+                transform: rotateY(-359deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <img src="./images/1.jpg" >
+        <img src="./images/2.jpg" >
+        <img src="./images/3.jpg" >
+        <img src="./images/4.png" >
+    </div>
+
+
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        body{
+            padding: 1rem;
+            display: grid;
+            gap: 1rem;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(5, 100px);
+            grid-template-areas: "h h h"
+                "na nb ad"
+                "nc nc ad"
+                "nc nc ad"
+                "f f f";
+        }
+
+        div{
+            padding: 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2rem;
+            border: 2px solid black;
+        }
+
+        div:nth-of-type(1){
+            grid-area: h;
+        }
+        div:nth-of-type(2){
+            grid-area: na;
+        }
+        div:nth-of-type(3){
+            grid-area: nb;
+        }
+        div:nth-of-type(4){
+            grid-area: nc;
+        }
+        div:nth-of-type(5){
+            grid-area: ad;
+        }
+        div:nth-of-type(6){
+            grid-area: f;
+        }
+
+
+        @media (max-width: 480px){
+            body{
+                grid-template-columns: 1fr;
+                grid-template-rows: repeat(11, 50px);
+                grid-template-areas: "h"
+                "na"
+                "na"
+                "ad"
+                "ad"
+                "ad"
+                "nb"
+                "nb"
+                "nc"
+                "nc"
+                "f";
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div>
+        Header
+    </div>
+    <div>
+        News A
+    </div>
+    <div>
+        News B
+    </div>
+    <div>
+        News C
+    </div>
+    <div>
+        Ad Space
+    </div>
+    <div>
+        Footer
+    </div>
+</body>
+</html>
